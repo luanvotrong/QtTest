@@ -1,9 +1,10 @@
 TEMPLATE = app
 
-QT += qml quick webengine
+QT += qml quick webengine webenginewidgets widgets
 CONFIG += c++11
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    Classes/HTMLHandler.cpp
 
 RESOURCES += qml.qrc
 
@@ -12,3 +13,6 @@ QML_IMPORT_PATH =
 
 # Default rules for deployment.
 include(deployment.pri)
+
+HEADERS += \
+    Classes/HTMLHandler.h
