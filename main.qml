@@ -6,9 +6,4 @@ Window {
     visible: true
     visibility: "Maximized"
     title: qsTr("Hello World")
-
-    WebEngineView {
-        anchors.fill: parent
-        url: "http://www.google.com"
-    }
 }

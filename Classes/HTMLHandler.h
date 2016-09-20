@@ -1,10 +1,18 @@
-#include <QWebEnginePage>
 #include <QApplication>
 
-class HTMLHandler : public QWebEnginePage
+class QWebEnginePage;
+
+class HTMLHandler : public QObject
 {
     Q_OBJECT
 
+private:
+    QWebEnginePage *m_webPage;
+
+public:
+    HTMLHandler();
+
 public slots:
-    void handleHTML(bool isDone);
+    void handleHTML(int isDone);
+    void parseHTML(QString content);
 };

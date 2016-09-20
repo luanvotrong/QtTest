@@ -14,11 +14,6 @@ int main(int argc, char *argv[])
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     HTMLHandler* htmlHandler = new HTMLHandler();
-    htmlHandler->load(QUrl("http://www.google.com.vn"));
-    htmlHandler->connect(htmlHandler,
-                         SIGNAL(loadFinished(bool)),
-                         htmlHandler,
-                         SLOT(handleHTML(bool)));
 
     return app.exec();
 }
