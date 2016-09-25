@@ -16,35 +16,16 @@ ListView {
             Rectangle {
                 width: 40
                 height: 40
-                color: colorCode
+                color: "#000000"
             }
 
             Text {
-                text: name
+                color: "#000000"
+                text: "Test"
+                styleColor: "#000000"
                 font.bold: true
                 anchors.verticalCenter: parent.verticalCenter
             }
-        }
-    }
-    model: ListModel {
-        ListElement {
-            name: "Grey"
-            colorCode: "grey"
-        }
-
-        ListElement {
-            name: "Red"
-            colorCode: "red"
-        }
-
-        ListElement {
-            name: "Blue"
-            colorCode: "blue"
-        }
-
-        ListElement {
-            name: "Green"
-            colorCode: "green"
         }
     }
 }

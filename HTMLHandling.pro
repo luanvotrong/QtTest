@@ -15,7 +15,8 @@ SOURCES += main.cpp \
     Classes/Gumbo/tokenizer.c \
     Classes/Gumbo/utf8.c \
     Classes/Gumbo/util.c \
-    Classes/Gumbo/vector.c
+    Classes/Gumbo/vector.c \
+    Classes/MyListElement.cpp
 
 RESOURCES += qml.qrc
 
@@ -45,7 +46,8 @@ HEADERS += \
     Classes/Gumbo/tokenizer_states.h \
     Classes/Gumbo/utf8.h \
     Classes/Gumbo/util.h \
-    Classes/Gumbo/vector.h
+    Classes/Gumbo/vector.h \
+    Classes/MyListElement.h
 
 DISTFILES += \
     Classes/Gumbo/tag.in

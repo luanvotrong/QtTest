@@ -14,6 +14,8 @@ int main(int argc, char *argv[])
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     HTMLHandler* htmlHandler = new HTMLHandler();
+    htmlHandler->m_engine = &engine;
+    htmlHandler->LoadUrl(QUrl(""));
 
     return app.exec();
 }

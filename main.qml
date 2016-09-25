@@ -7,8 +7,6 @@ Window {
     title: qsTr("Hello World")
 
     ListForm {
-        ListForm{
-
-        }
+    objectName: "myList"
     }
 }

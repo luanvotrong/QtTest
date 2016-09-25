@@ -1,6 +1,7 @@
 #include <QApplication>
 
 class QWebEnginePage;
+class QQmlApplicationEngine;
 
 class HTMLHandler : public QObject
 {
@@ -10,7 +11,12 @@ private:
     QWebEnginePage *m_webPage;
 
 public:
+    //temp cheat
+    QQmlApplicationEngine *m_engine;
+
+public:
     HTMLHandler();
+    void LoadUrl(QUrl url);
 
 public slots:
     void handleHTML(int isDone);
