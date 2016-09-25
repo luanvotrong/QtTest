@@ -7,6 +7,10 @@ Window {
     title: qsTr("Hello World")
 
     ListForm {
-    objectName: "myList"
+        objectName: "myList"
+        function setModel(_model)
+        {
+            model = _model;
+        }
     }
 }

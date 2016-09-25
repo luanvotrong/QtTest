@@ -67,8 +67,11 @@ void HTMLHandler::parseHTML(QString content)
     QObject* listObject = rootWindow->findChild<QObject*>(QString("myList"));
     if(listObject)
     {
-
-        qInfo() << qPrintable(content) << endl;
+        QVariant returnedValue;
+        QMetaObject::invokeMethod(listObject,
+                                  "setModel",
+                                  Q_RETURN_ARG(QVariant, returnedValue),
+                                  Q_ARG(QVariant, QVariant::fromValue(list)));
     }
     //QByteArray byte = content.toLocal8Bit();
     //const char* content_char = byte.data();
