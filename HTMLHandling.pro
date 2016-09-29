@@ -16,9 +16,10 @@ SOURCES += main.cpp \
     Classes/Gumbo/utf8.c \
     Classes/Gumbo/util.c \
     Classes/Gumbo/vector.c \
-    Classes/MyListElement.cpp
+    Classes/Tree/TreeItem.cpp \
+    Classes/Tree/TreeModel.cpp
 
-RESOURCES += qml.qrc
+RESOURCES += Resource/default.txt
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -47,7 +48,8 @@ HEADERS += \
     Classes/Gumbo/utf8.h \
     Classes/Gumbo/util.h \
     Classes/Gumbo/vector.h \
-    Classes/MyListElement.h
+    Classes/Tree/TreeItem.h \
+    Classes/Tree/TreeModel.h
 
 DISTFILES += \
     Classes/Gumbo/tag.in

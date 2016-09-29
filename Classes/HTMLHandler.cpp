@@ -3,7 +3,6 @@
 #include <QWebEnginePage>
 #include <iostream>
 #include "Gumbo/gumbo.h"
-#include "MyListElement.h"
 
 HTMLHandler::HTMLHandler()
 {
@@ -57,22 +56,6 @@ static std::string cleantext(GumboNode* node)
 
 void HTMLHandler::parseHTML(QString content)
 {
-    QList<QObject*> list;
-
-    for(int i=0; i<100; i++)
-    {
-        list.append(new MyListElement("id" + i));
-    }
-    QObject* rootWindow = m_engine->rootObjects().first();
-    QObject* listObject = rootWindow->findChild<QObject*>(QString("myList"));
-    if(listObject)
-    {
-        QVariant returnedValue;
-        QMetaObject::invokeMethod(listObject,
-                                  "setModel",
-                                  Q_RETURN_ARG(QVariant, returnedValue),
-                                  Q_ARG(QVariant, QVariant::fromValue(list)));
-    }
     //QByteArray byte = content.toLocal8Bit();
     //const char* content_char = byte.data();
     //qInfo() << qPrintable(content) << endl;
