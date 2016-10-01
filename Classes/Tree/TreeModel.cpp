@@ -60,7 +60,6 @@
 
 #include <QStringList>
 
-//! [0]
 TreeModel::TreeModel(const QString &data, QObject *parent)
     : QAbstractItemModel(parent)
 {
@@ -69,9 +68,13 @@ TreeModel::TreeModel(const QString &data, QObject *parent)
     rootItem = new TreeItem(rootData);
     setupModelData(data.split(QString("\n")), rootItem);
 }
-//! [0]
 
-//! [1]
+
+TreeModel::TreeModel(const GumboNode* node, QObject *parent)
+{
+
+}
+
 TreeModel::~TreeModel()
 {
     delete rootItem;
@@ -225,4 +228,8 @@ void TreeModel::setupModelData(const QStringList &lines, TreeItem *parent)
 
         ++number;
     }
+}
+
+void TreeModel::setupModelData(const GumboNode* node, TreeItem *parent)
+{
 }

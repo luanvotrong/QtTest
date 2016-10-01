@@ -56,14 +56,15 @@
 #include <QVariant>
 
 class TreeItem;
+typedef struct GumboInternalNode GumboNode;
 
-//! [0]
 class TreeModel : public QAbstractItemModel
 {
     Q_OBJECT
 
 public:
     explicit TreeModel(const QString &data, QObject *parent = 0);
+    explicit TreeModel(const GumboNode* node, QObject *parent = 0);
     ~TreeModel();
 
     QVariant data(const QModelIndex &index, int role) const Q_DECL_OVERRIDE;
@@ -78,6 +79,7 @@ public:
 
 private:
     void setupModelData(const QStringList &lines, TreeItem *parent);
+    void setupModelData(const GumboNode* node, TreeItem *parent);
 
     TreeItem *rootItem;
 };

@@ -19,7 +19,7 @@ SOURCES += main.cpp \
     Classes/Tree/TreeItem.cpp \
     Classes/Tree/TreeModel.cpp
 
-RESOURCES += Resource/default.txt
+#RESOURCES += Resource/default.txt
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -53,3 +53,6 @@ HEADERS += \
 
 DISTFILES += \
     Classes/Gumbo/tag.in
+
+RESOURCES += \
+    Resource/resources.qrc
