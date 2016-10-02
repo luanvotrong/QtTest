@@ -57,7 +57,7 @@
 
 #include "TreeItem.h"
 #include "TreeModel.h"
-
+#include "../Gumbo/gumbo.h"
 #include <QStringList>
 
 TreeModel::TreeModel(const QString &data, QObject *parent)
@@ -70,9 +70,12 @@ TreeModel::TreeModel(const QString &data, QObject *parent)
 }
 
 
-TreeModel::TreeModel(const GumboNode* node, QObject *parent)
+TreeModel::TreeModel(GumboNode *node, QObject *parent)
 {
-
+    QList<QVariant> rootData;
+    rootData << "Title" << "Summary";
+    rootItem = new TreeItem(rootData);
+    setupModelData(node, rootItem);
 }
 
 TreeModel::~TreeModel()
@@ -129,7 +132,7 @@ QVariant TreeModel::headerData(int section, Qt::Orientation orientation,
 
 //! [6]
 QModelIndex TreeModel::index(int row, int column, const QModelIndex &parent)
-            const
+const
 {
     if (!hasIndex(row, column, parent))
         return QModelIndex();
@@ -230,6 +233,16 @@ void TreeModel::setupModelData(const QStringList &lines, TreeItem *parent)
     }
 }
 
-void TreeModel::setupModelData(const GumboNode* node, TreeItem *parent)
+void TreeModel::setupModelData(GumboNode* node, TreeItem *parent)
 {
+    if (node->type == GUMBO_NODE_ELEMENT &&
+            node->v.element.tag != GUMBO_TAG_SCRIPT &&
+            node->v.element.tag != GUMBO_TAG_STYLE)
+    {
+        std::string contents = "";
+        GumboVector* children = &node->v.element.children;
+        for (unsigned int i = 0; i < children->length; ++i)
+        {
+        }
+    }
 }

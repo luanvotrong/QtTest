@@ -64,10 +64,6 @@ TreeItem::TreeItem(const QList<QVariant> &data, TreeItem *parent)
     m_itemData = data;
 }
 
-TreeItem::TreeItem(const GumboNode* node, TreeItem *parentItem)
-{
-}
-
 TreeItem::~TreeItem()
 {
     qDeleteAll(m_childItems);

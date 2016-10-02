@@ -61,7 +61,6 @@ class TreeItem
 {
 public:
     explicit TreeItem(const QList<QVariant> &data, TreeItem *parentItem = 0);
-    explicit TreeItem(const GumboNode* node, TreeItem *parentItem = 0);
     ~TreeItem();
 
     void appendChild(TreeItem *child);
