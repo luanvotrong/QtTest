@@ -2,6 +2,7 @@
 
 class QWebEnginePage;
 class QQmlApplicationEngine;
+class QTreeView;
 
 class HTMLHandler : public QObject
 {
@@ -9,6 +10,7 @@ class HTMLHandler : public QObject
 
 private:
     QWebEnginePage *m_webPage;
+    QTreeView *m_treeView;
 
 public:
     //temp cheat

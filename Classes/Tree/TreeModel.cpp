@@ -235,14 +235,21 @@ void TreeModel::setupModelData(const QStringList &lines, TreeItem *parent)
 
 void TreeModel::setupModelData(GumboNode* node, TreeItem *parent)
 {
-    if (node->type == GUMBO_NODE_ELEMENT &&
+    if (node &&
+            node->type == GUMBO_NODE_ELEMENT &&
             node->v.element.tag != GUMBO_TAG_SCRIPT &&
             node->v.element.tag != GUMBO_TAG_STYLE)
     {
-        std::string contents = "";
         GumboVector* children = &node->v.element.children;
         for (unsigned int i = 0; i < children->length; ++i)
         {
+            GumboNode* newNode = (GumboNode*)children->data[i];
+            QList<QVariant> data;
+            data << "tag";
+            data << "content";
+            TreeItem* newItem = new TreeItem(data, parent);
+            parent->appendChild(newItem);
+            setupModelData(newNode, newItem);
         }
     }
 }

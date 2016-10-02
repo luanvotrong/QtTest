@@ -1,11 +1,22 @@
 #include "HTMLHandler.h"
-#include <QQmlApplicationEngine>
+#include <QApplication>
+#include <QDesktopWidget>
 #include <QWebEnginePage>
+#include <QTreeView>"
 #include <iostream>
+#include "Tree/TreeModel.h"
 #include "Gumbo/gumbo.h"
 
 HTMLHandler::HTMLHandler()
 {
+    QRect screenRect = QApplication::desktop()->screenGeometry();
+
+    m_treeView = new QTreeView();
+    m_treeView->setWindowTitle(QObject::tr("Simple Tree Model"));
+    m_treeView->setColumnWidth(0, screenRect.width()/3);
+    m_treeView->setColumnWidth(1, screenRect.width()/3*2);
+    m_treeView->setFixedSize(screenRect.width(), screenRect.height());
+    m_treeView->show();
 }
 
 void HTMLHandler::LoadUrl(QUrl url)
@@ -56,10 +67,13 @@ static std::string cleantext(GumboNode* node)
 
 void HTMLHandler::parseHTML(QString content)
 {
-    //QByteArray byte = content.toLocal8Bit();
-    //const char* content_char = byte.data();
+    QByteArray byte = content.toLocal8Bit();
+    const char* content_char = byte.data();
     //qInfo() << qPrintable(content) << endl;
-    //GumboOutput* output = gumbo_parse(content_char);
+    GumboOutput* output = gumbo_parse(content_char);
     //std::cout << cleantext(output->root) << std::endl;
-    //gumbo_destroy_output(&kGumboDefaultOptions, output);
+    gumbo_destroy_output(&kGumboDefaultOptions, output);
+
+    TreeModel *model = new TreeModel(output->root);
+    m_treeView->setModel(model);
 }
