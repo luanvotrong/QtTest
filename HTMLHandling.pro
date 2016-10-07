@@ -5,21 +5,10 @@ CONFIG += c++11
 
 SOURCES += main.cpp \
     Classes/HTMLHandler.cpp \
-    Classes/Gumbo/attribute.c \
-    Classes/Gumbo/char_ref.c \
-    Classes/Gumbo/error.c \
-    Classes/Gumbo/parser.c \
-    Classes/Gumbo/string_buffer.c \
-    Classes/Gumbo/string_piece.c \
-    Classes/Gumbo/tag.c \
-    Classes/Gumbo/tokenizer.c \
-    Classes/Gumbo/utf8.c \
-    Classes/Gumbo/util.c \
-    Classes/Gumbo/vector.c \
     Classes/Tree/TreeItem.cpp \
     Classes/Tree/TreeModel.cpp
 
-#RESOURCES += Resource/default.txt
+RESOURCES += Resource/default.txt
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -29,30 +18,38 @@ include(deployment.pri)
 
 HEADERS += \
     Classes/HTMLHandler.h \
-    Classes/Gumbo/attribute.h \
-    Classes/Gumbo/char_ref.h \
-    Classes/Gumbo/char_ref.rl \
-    Classes/Gumbo/error.h \
-    Classes/Gumbo/gumbo.h \
-    Classes/Gumbo/insertion_mode.h \
-    Classes/Gumbo/parser.h \
-    Classes/Gumbo/string_buffer.h \
-    Classes/Gumbo/string_piece.h \
-    Classes/Gumbo/tag_enum.h \
-    Classes/Gumbo/tag_gperf.h \
-    Classes/Gumbo/tag_sizes.h \
-    Classes/Gumbo/tag_strings.h \
-    Classes/Gumbo/token_type.h \
-    Classes/Gumbo/tokenizer.h \
-    Classes/Gumbo/tokenizer_states.h \
-    Classes/Gumbo/utf8.h \
-    Classes/Gumbo/util.h \
-    Classes/Gumbo/vector.h \
     Classes/Tree/TreeItem.h \
-    Classes/Tree/TreeModel.h
+    Classes/Tree/TreeModel.h \
+    Classes/Gumbo/strings.h
 
 DISTFILES += \
-    Classes/Gumbo/tag.in
+    Classes/Gumbo/tag.in \
+    Classes/Gumbo/gumbo_parser/tag.in
 
-RESOURCES += \
-    Resource/resources.qrc
+# Add gumbo_parser lib
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/Libs/gumbo_parser/lib/release/ -lgumbo_parser
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/Libs/gumbo_parser/lib/debug/ -lgumbo_parser
+else:unix: LIBS += -L$$PWD/Libs/gumbo_parser/lib/ -lgumbo_parser
+
+INCLUDEPATH += $$PWD/Libs/gumbo_parser/src
+DEPENDPATH += $$PWD/Libs/gumbo_parser/src
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/Libs/gumbo_parser/lib/release/libgumbo_parser.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/Libs/gumbo_parser/lib/debug/libgumbo_parser.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/Libs/gumbo_parser/lib/release/gumbo_parser.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/Libs/gumbo_parser/lib/debug/gumbo_parser.lib
+else:unix: PRE_TARGETDEPS += $$PWD/Libs/gumbo_parser/lib/libgumbo_parser.a
+
+## Add gumbo_query lib
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/Libs/gumbo_query/lib/release/ -lgumbo_query
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/Libs/gumbo_query/lib/debug/ -lgumbo_query
+else:unix: LIBS += -L$$PWD/Libs/gumbo_query/lib/ -lgumbo_query
+
+INCLUDEPATH += $$PWD/Libs/gumbo_query/src
+DEPENDPATH += $$PWD/Libs/gumbo_query/src
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/Libs/gumbo_query/lib/release/libgumbo_query.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/Libs/gumbo_query/lib/debug/libgumbo_query.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/Libs/gumbo_query/lib/release/gumbo_query.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/Libs/gumbo_query/lib/debug/gumbo_query.lib
+else:unix: PRE_TARGETDEPS += $$PWD/Libs/gumbo_query/lib/libgumbo_query.a

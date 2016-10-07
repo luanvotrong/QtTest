@@ -55,7 +55,7 @@
 */
 
 #include <QStringList>
-#include "../Gumbo/gumbo.h"
+#include "gumbo.h"
 #include "treeitem.h"
 
 TreeItem::TreeItem(const QList<QVariant> &data, TreeItem *parent)

@@ -57,7 +57,7 @@
 
 #include "TreeItem.h"
 #include "TreeModel.h"
-#include "../Gumbo/gumbo.h"
+#include "Node.h"
 #include <QStringList>
 
 TreeModel::TreeModel(const QString &data, QObject *parent)
@@ -70,7 +70,7 @@ TreeModel::TreeModel(const QString &data, QObject *parent)
 }
 
 
-TreeModel::TreeModel(GumboNode *node, QObject *parent)
+TreeModel::TreeModel(CNode *node, QObject *parent)
 {
     QList<QVariant> rootData;
     rootData << "Title" << "Summary";
@@ -233,12 +233,11 @@ void TreeModel::setupModelData(const QStringList &lines, TreeItem *parent)
     }
 }
 
-void TreeModel::setupModelData(GumboNode* node, TreeItem *parent)
+void TreeModel::setupModelData(CNode *node, TreeItem *parent)
 {
+    /*
     if (node &&
-            node->type == GUMBO_NODE_ELEMENT &&
-            node->v.element.tag != GUMBO_TAG_SCRIPT &&
-            node->v.element.tag != GUMBO_TAG_STYLE)
+            node->)
     {
         GumboVector* children = &node->v.element.children;
         for (unsigned int i = 0; i < children->length; ++i)
@@ -252,4 +251,5 @@ void TreeModel::setupModelData(GumboNode* node, TreeItem *parent)
             setupModelData(newNode, newItem);
         }
     }
+    */
 }
