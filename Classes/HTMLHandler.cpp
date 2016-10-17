@@ -10,6 +10,40 @@
 #include "Node.h"
 #include "Tree/TreeModel.h"
 
+QString data2("\<!DOCTYPE html>\
+             <html>\
+             <head>\
+             <title>Project Template</title>\
+             <meta charset=\"utf-8\"></meta>\
+        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0\">\
+        <link rel=\"stylesheet\" href=\"css/style_debug.css\" />\
+        <script src=\"http://game-portal.gameloft.com/2093/v4.0/?_rp_=mig/resource/41907h2s1445312896884/debug\"></script>\
+        <script src=\"js/ConfigDebug.js\"></script>\
+        <script src=\"js/core/ScriptMgr.js\"></script>\
+        <style>\
+        html,body,canvas\
+{\
+                 width: 100%;\
+                 height: 100%;\
+                 margin: 0px;\
+                 padding: 0px;\
+                 position: fixed;\
+                 left: 0;\
+                 top: 0;\
+             }\
+             </style>\
+             </head>\
+             <body>\
+             <div id=\"gameDiv\">\
+        <canvas id=\"canvas\">\
+        </canvas>\
+        </div>\
+        <div id=\"gameDiv2\">\
+        <canvas id=\"canvas2\">\
+        </canvas>\
+        </div>\
+        </body></html>");
+
 HTMLHandler::HTMLHandler()
 {
     QRect screenRect = QApplication::desktop()->screenGeometry();
