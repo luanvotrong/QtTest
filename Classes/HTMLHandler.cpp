@@ -90,7 +90,7 @@ void HTMLHandler::parseHTML(QString content)
     std::cout << cleantext(output->root) << std::endl;
     gumbo_destroy_output(&kGumboDefaultOptions, output);
     */
-    //TreeModel *model = new TreeModel(output->root);
-    //m_treeView->setModel(model);
+    TreeModel *model = new TreeModel(node);
+    m_treeView->setModel(model);
 
 }
