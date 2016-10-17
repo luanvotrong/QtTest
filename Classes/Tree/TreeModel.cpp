@@ -57,7 +57,8 @@
 
 #include "TreeItem.h"
 #include "TreeModel.h"
-#include "Node.h"
+#include <Document.h>
+#include <Node.h>
 #include <QStringList>
 
 TreeModel::TreeModel(const QString &data, QObject *parent)
@@ -259,4 +260,15 @@ void TreeModel::setupModelData(CNode *node, TreeItem *parent)
         }
     }
     */
+    for(int i=0; i<node->childNum(); i++)
+    {
+        QList<QVariant> data;
+        data << "tag";
+        data << "content";
+        TreeItem* newItem = new TreeItem(data, parent);
+        parent->appendChild(newItem);
+
+        CNode* child = &node->childAt(i);
+        setupModelData(child, newItem);
+    }
 }
