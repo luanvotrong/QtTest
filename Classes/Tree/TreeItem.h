@@ -54,8 +54,6 @@
 #include <QList>
 #include <QVariant>
 
-typedef struct GumboInternalNode GumboNode;
-
 //! [0]
 class TreeItem
 {

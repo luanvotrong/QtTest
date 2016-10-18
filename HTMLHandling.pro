@@ -18,8 +18,7 @@ include(deployment.pri)
 
 HEADERS += \
     Classes/HTMLHandler.h \
-    Classes/Tree/TreeItem.h \
-    Classes/Tree/TreeModel.h
+    Classes/Tree/TreeItem.h
 
 # Add gumbo_parser lib
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/Libs/gumbo_parser/lib/release/ -lgumbo_parser

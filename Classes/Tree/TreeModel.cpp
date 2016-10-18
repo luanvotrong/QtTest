@@ -70,15 +70,6 @@ TreeModel::TreeModel(const QString &data, QObject *parent)
     setupModelData(data.split(QString("\n")), rootItem);
 }
 
-
-TreeModel::TreeModel(CNode *node, QObject *parent)
-{
-    QList<QVariant> rootData;
-    rootData << "Title" << "Summary";
-    rootItem = new TreeItem(rootData);
-    setupModelData(node, rootItem);
-}
-
 TreeModel::~TreeModel()
 {
     delete rootItem;
@@ -233,7 +224,6 @@ void TreeModel::setupModelData(const QStringList &lines, TreeItem *parent)
         ++number;
     }
 }
-
 void TreeModel::setupModelData(CNode *node, TreeItem *parent)
 {
     /*

@@ -75,6 +75,7 @@ void HTMLHandler::handleHTML(int isDone)
 
 void HTMLHandler::parseHTML(QString content)
 {
+    /*
     QByteArray byte = content.toLocal8Bit();
     const char* content_char = byte.data();
 
@@ -90,7 +91,8 @@ void HTMLHandler::parseHTML(QString content)
     std::cout << cleantext(output->root) << std::endl;
     gumbo_destroy_output(&kGumboDefaultOptions, output);
     */
+    /*
     TreeModel *model = new TreeModel(node);
     m_treeView->setModel(model);
-
+    */
 }

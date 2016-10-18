@@ -34,7 +34,7 @@ CSelection::~CSelection()
 
 CSelection CSelection::find(std::string aSelector)
 {
-    CSelector* sel = CParser::create(aSelector);
+	CSelector* sel = CParser::create(aSelector);
 	std::vector<GumboNode*> ret;
 	for (std::vector<GumboNode*>::iterator it = mNodes.begin(); it != mNodes.end(); it++)
 	{
@@ -42,8 +42,8 @@ CSelection CSelection::find(std::string aSelector)
 		std::vector<GumboNode*> matched = sel->matchAll(pNode);
 		ret = CQueryUtil::unionNodes(ret, matched);
 	}
-    sel->release();
-    return CSelection(ret);
+	sel->release();
+	return CSelection(ret);
 }
 
 CNode CSelection::nodeAt(size_t i)
