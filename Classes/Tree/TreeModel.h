@@ -63,7 +63,8 @@ class TreeModel : public QAbstractItemModel
     Q_OBJECT
 
 public:
-    explicit TreeModel(CNode* node, QObject *parent = 0);
+    explicit TreeModel(const QString &data, QObject *parent = 0);
+    explicit TreeModel(CNode *node, QObject *parent = 0);
     ~TreeModel();
 
     QVariant data(const QModelIndex &index, int role) const Q_DECL_OVERRIDE;

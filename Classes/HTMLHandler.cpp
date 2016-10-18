@@ -65,7 +65,7 @@ void HTMLHandler::LoadUrl(QUrl url)
 
 void HTMLHandler::handleHTML(int isDone)
 {
-    if(isDone >= 95)
+    if(isDone >= 99)
     {
         m_webPage->toHtml([this](QString str){
             this->parseHTML(str);
@@ -75,24 +75,20 @@ void HTMLHandler::handleHTML(int isDone)
 
 void HTMLHandler::parseHTML(QString content)
 {
-    /*
     QByteArray byte = content.toLocal8Bit();
     const char* content_char = byte.data();
 
     CDocument doc;
     doc.parse(content_char);
 
-    CNode* node = doc.getRootNode();
-    qInfo() << qPrintable(node->tag().c_str()) << endl;
-    qInfo() << qPrintable(node->text().c_str()) << endl;
+    //CNode* node =
+    doc.getRootNode();
     /*
     qInfo() << qPrintable(content) << endl;
     GumboOutput* output = gumbo_parse(content_char);
     std::cout << cleantext(output->root) << std::endl;
     gumbo_destroy_output(&kGumboDefaultOptions, output);
     */
-    /*
-    TreeModel *model = new TreeModel(node);
-    m_treeView->setModel(model);
-    */
+    //TreeModel *model = new TreeModel(node);
+    //m_treeView->setModel(model);
 }
