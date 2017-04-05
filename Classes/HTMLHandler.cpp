@@ -5,6 +5,10 @@
 #include <QTreeView>"
 #include <iostream>
 
+#include "Document.h"
+#include "Selection.h"
+#include "Node.h"
+
 
 HTMLHandler::HTMLHandler()
 {
@@ -16,12 +20,12 @@ void HTMLHandler::LoadUrl(QUrl url)
 {
     m_webPage = new QWebEnginePage();
     QObject::connect(m_webPage, SIGNAL(loadProgress(int)), this, SLOT(handleHTML(int)));
-    m_webPage->load(url);
+    m_webPage->load(QUrl("http://mangafox.me/"));
 }
 
 void HTMLHandler::handleHTML(int isDone)
 {
-    if(isDone == 100)
+    if(isDone >= 99)
     {
         m_webPage->toHtml([this](QString str){
             this->parseHTML(str);
@@ -32,6 +36,7 @@ void HTMLHandler::handleHTML(int isDone)
 void HTMLHandler::parseHTML(QString content)
 {
     QByteArray byte = content.toLocal8Bit();
-    std::string str_content(byte.data());
-    std::cout << str_content << endl;
+    const char* content_char = byte.data();
+
+
 }

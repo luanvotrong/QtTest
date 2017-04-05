@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     HTMLHandler* htmlHandler = new HTMLHandler();
-    htmlHandler->LoadUrl(QUrl("http://mangafox.me/"));
+    htmlHandler->LoadUrl(QUrl(""));
 
     return app.exec();
 }
