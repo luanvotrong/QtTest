@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>Tree.qml</file>
-        <file>default.txt</file>
-    </qresource>
-</RCC>
