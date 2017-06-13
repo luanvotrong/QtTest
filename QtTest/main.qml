@@ -1,5 +1,6 @@
 import QtQuick 2.6
 import QtQuick.Window 2.2
+import QtGraphicalEffects 1.0
 
 Window {
     visible: true
@@ -17,28 +18,45 @@ Window {
         mouseArea.onClicked: {
             console.log(qsTr('Clicked on background. Text: "' + textEdit.text + '"'))
         }
-    }
-
-    Rectangle {
-        id: profileHolder
-        x: 220
-        y: 120
-        width: 200
-        height: 200
-        color: "#ffffff"
-        radius: 100
-        border.color: "#ffffff"
-        border.width: 0
 
         Rectangle {
-            id: rectangle
-            x: 5
-            y: 5
-            width: 190
-            height: 190
+            id: sourceMask
+            x: 74
+            y: 127
+            width: 150
+            height: 150
+            visible: false
+            clip: true
+
+            Image {
+                id: image
+                x: 0
+                y: -40
+                width: 150
+                height: 224
+                visible: true
+                fillMode: Image.PreserveAspectCrop
+                source: "son_lead.jpg"
+            }
+        }
+
+        Rectangle {
+            id: destMask
+            x: 74
+            y: 127
+            width: 150
+            height: 150
             color: "#000000"
-            radius: 92
-            border.width: 0
+            radius: 75
+            border.color: "#ffffff"
+            border.width: 3
+        }
+
+        OpacityMask {
+            visible: true
+            anchors.fill: destMask
+            source: sourceMask
+            maskSource: destMask
         }
     }
 }
