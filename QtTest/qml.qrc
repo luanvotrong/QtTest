@@ -2,6 +2,7 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>MainForm.ui.qml</file>
-        <file>son_lead.jpg</file>
+        <file>PictureDialogueForm.ui.qml</file>
+        <file>son_lead.JPG</file>
     </qresource>
 </RCC>
