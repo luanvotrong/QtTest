@@ -18,6 +18,18 @@ Window {
         anchors.topMargin: 0
         anchors.fill: parent
 
+        Image {
+            id: imageBlur
+            source: "son_lead.JPG"
+            visible: true
+            x: sourceMask.x + image.x
+            y: sourceMask.y + image.y
+            property real scaleFactor: 1
+            width: sourceSize.width * scaleFactor
+            height: sourceSize.height * scaleFactor
+            opacity: 0.2
+        }
+
         Rectangle {
             id: sourceMask
             x: 74
@@ -30,10 +42,10 @@ Window {
             Image {
                 id: image
                 x: 0
-                y: -40
+                y: 0
                 property real scaleFactor: 1
-                width: 150 * scaleFactor
-                height: 224 * scaleFactor
+                width: sourceSize.width * scaleFactor
+                height: sourceSize.height * scaleFactor
                 visible: true
                 fillMode: Image.PreserveAspectCrop
                 source: "son_lead.JPG"
@@ -53,6 +65,9 @@ Window {
                 image.scaleFactor += 0.2 * wheel.angleDelta.y / 120;
                 if (image.scaleFactor < 0)
                     image.scaleFactor = 0;
+                imageBlur.scaleFactor += 0.2 * wheel.angleDelta.y / 120;
+                if(imageBlur.scaleFactor < 0)
+                    imageBlur.scaleFactor = 0;
             }
         }
 
@@ -106,6 +121,7 @@ Window {
             Component.onCompleted: visible = true
             onAccepted: {
                 image.source = fileDialog.fileUrl;
+                imageBlur.source = fileDialog.fileUrl;
             }
         }
     }
