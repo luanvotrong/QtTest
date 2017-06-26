@@ -1,16 +1,42 @@
 import QtQuick 2.6
 import QtQuick.Window 2.2
+import QtQuick.Controls 1.4
 import QtGraphicalEffects 1.0
 import QtQuick.Dialogs 1.2
 
-Window {
+ApplicationWindow  {
     id: window
     visible: true
     width: 640
     height: 480
     title: qsTr("Hello World")
 
+    menuBar:MenuBar {
+        Menu {
+            title: "File"
+            MenuItem {
+                text: "Load Picture"
+                onTriggered: {
+                    fileDialog.open();
+                }
+            }
+            MenuItem {
+                text: "Save"
+                onTriggered: {
+                    imageBlur.visible = false;
+                    mainForm.grabToImage(function(result)
+                    {
+                        imageBlur.visible = true;
+                        result.saveToFile("./test.jpg");
+                        console.log(result.url);
+                    });
+                }
+            }
+        }
+    }
+
     MainForm {
+        id: mainForm
         width: 300
         anchors.rightMargin: 171
         anchors.bottomMargin: 0
@@ -20,7 +46,6 @@ Window {
 
         Image {
             id: imageBlur
-            source: "son_lead.JPG"
             visible: true
             x: sourceMask.x + image.x
             y: sourceMask.y + image.y
@@ -48,7 +73,6 @@ Window {
                 height: sourceSize.height * scaleFactor
                 visible: true
                 fillMode: Image.PreserveAspectCrop
-                source: "son_lead.JPG"
                 states: State {
                     when: mouseArea.drag.active
                     ParentChange { target: tile; parent: root }
@@ -61,6 +85,7 @@ Window {
             id: dragArea
             anchors.fill: parent
             drag.target: image
+            smooth: true
             onWheel: {
                 image.scaleFactor += 0.2 * wheel.angleDelta.y / 120;
                 if (image.scaleFactor < 0)
@@ -90,35 +115,11 @@ Window {
             maskSource: destMask
         }
 
-        Text {
-            id: text1
-            x: -162
-            y: 372
-            width: 100
-            height: 100
-            text: qsTr("Load picture")
-            font.bold: true
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignHCenter
-            font.pixelSize: 15
-
-            MouseArea {
-                id: loadPicture
-                x: 0
-                y: 0
-                width: 100
-                height: 100
-                onClicked: function() {
-                    fileDialog.open();
-                }
-            }
-        }
-
         FileDialog {
             id: fileDialog
             title: "Please choose a file"
             folder: shortcuts.home
-            Component.onCompleted: visible = true
+            Component.onCompleted: visible = false
             onAccepted: {
                 image.source = fileDialog.fileUrl;
                 imageBlur.source = fileDialog.fileUrl;

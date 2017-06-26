@@ -1,4 +1,3 @@
-#include <QDialog>
 #include <QQmlContext>
 #include "manager.h"
 
